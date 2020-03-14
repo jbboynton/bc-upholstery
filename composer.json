@@ -1,0 +1,27 @@
+{
+  "name": "jbboynton/bc-upholstery",
+  "version": "0.1",
+  "type": "wordpress-muplugin",
+  "description": "WordPress CPT for BC Custom Canvas' upholstery services.",
+  "homepage": "https://github.com/jbboynton/bc-upholstery",
+  "authors": [
+    {
+      "name": "James Boynton",
+      "email": "james.boynton0@gmail.com",
+      "homepage": "https://github.com/jbboynton"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/jbboynton/bc-upholstery/issues"
+  },
+ "require": {
+    "php": "^7.4",
+    "composer/installers": "^1.8.0",
+    "jjgrainger/posttypes": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "BC\\Upholstery\\" : "src"
+    }
+  }
+}
