@@ -131,8 +131,8 @@ class Service {
 
   public function canvas_services() {
     return array_map(function ($id) {
-      return new UphosteryService($id);
-    }, self::find_published(CanvasPostType::ID, $this->products));
+      return new CanvasService($id);
+    }, self::find_published(CanvasPostType::ID, $this->canvas_services));
   }
 
   public function gallery_copy() {
@@ -192,12 +192,12 @@ class Service {
       get_field('bc_upholstery_upholstery_copy', $this->id);
   }
 
-  private function set_upholstery_services() {
-    $services = (array) get_field('relation_upholstery_upholstery', $this->id);
+  private function set_canvas_services() {
+    $services = (array) get_field('relation_canvas_upholstery', $this->id);
 
     sort($services);
 
-    $this->upholstery_services = $services;
+    $this->canvas_services = $services;
   }
 
   private function set_featured_links() {

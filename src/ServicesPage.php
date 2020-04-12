@@ -15,7 +15,7 @@ class ServicesPage {
   }
 
   public function name() {
-    return post_type_archive_title('', false);
+    return get_post_type_object(UpholsteryPostType::ID)->labels->name;
   }
 
   public function banner($size = 'full') {
@@ -37,7 +37,7 @@ class ServicesPage {
   public function featured_services() {
     $published_services = Service::find_published(
       UpholsteryPostType::ID,
-      $this->featured_services,
+      $this->featured_services
     );
 
     return array_map(function ($id) {

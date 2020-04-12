@@ -4,19 +4,11 @@ namespace BC\Upholstery;
 
 use PostTypes\PostType;
 
-<<<<<<< HEAD:src/UpholsteryPostType.php
 class UpholsteryPostType {
   public const ID = 'upholstery_service';
   public const PLURAL_NAME = 'Upholstery';
   public const SINGULAR_NAME = 'Upholstery Service';
   public const SLUG = 'upholstery';
-=======
-class CanvasPostType {
-  public const ID = 'canvas_service';
-  public const PLURAL_NAME = 'Canvas Services';
-  public const SINGULAR_NAME = 'Canvas Service';
-  public const SLUG = 'canvas';
->>>>>>> parent of 4600e1e... Fix typos and bad labelling:src/CanvasPostType.php
 
   private $cpt;
   private $icon = 'dashicons-admin-page';
@@ -61,14 +53,11 @@ class CanvasPostType {
       'search_items' => self::PLURAL_NAME,
       'archives' => self::PLURAL_NAME,
       'menu_name' => self::PLURAL_NAME,
-<<<<<<< HEAD:src/UpholsteryPostType.php
       'not_found' => 'No upholstery services found',
       'not_found_in_trash' => 'No upholstery services found in Trash',
       'search_items' => 'Search Upholstery Services',
       'search_items' => self::PLURAL_NAME,
       'view_items' => 'View Upholstery Services',
-=======
->>>>>>> parent of 4600e1e... Fix typos and bad labelling:src/CanvasPostType.php
     ]);
   }
 }

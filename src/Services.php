@@ -11,11 +11,7 @@ class Services {
 
     $query = new \WP_Query([
       'nopaging' => true,
-<<<<<<< HEAD
       'post_type' => UpholsteryPostType::ID,
-=======
-      'post_type' => ServicePostType::ID,
->>>>>>> parent of 4600e1e... Fix typos and bad labelling
       'fields' => 'ids',
     ]);
 
@@ -75,19 +71,11 @@ class Services {
   }
 
   public function create_post_type() {
-<<<<<<< HEAD
     new UpholsteryPostType();
   }
 
   public function create_taxonomy() {
     new RelatedUpholsteryTaxonomy();
-=======
-    new ServicePostType();
-  }
-
-  public function create_taxonomy() {
-    new RelatedServiceTaxonomy();
->>>>>>> parent of 4600e1e... Fix typos and bad labelling
   }
 
   public function create_bulk_action() {
@@ -95,15 +83,9 @@ class Services {
   }
 
   public function create_options_page() {
-<<<<<<< HEAD
     $page_title = UpholsteryPostType::PLURAL_NAME . ' Page';
     $menu_title = UpholsteryPostType::PLURAL_NAME . ' Page';
     $parent_slug = 'edit.php?post_type=' . UpholsteryPostType::ID;
-=======
-    $page_title = ServicePostType::PLURAL_NAME . ' Page';
-    $menu_title = ServicePostType::PLURAL_NAME . ' Page';
-    $parent_slug = 'edit.php?post_type=' . ServicePostType::ID;
->>>>>>> parent of 4600e1e... Fix typos and bad labelling
 
     if (function_exists('acf_add_options_sub_page')) {
       acf_add_options_sub_page([
@@ -200,11 +182,7 @@ class Services {
   }
 
   private function will_set_on_save($id) {
-<<<<<<< HEAD
     return (get_post_type($id) == UpholsteryPostType::ID ? true : false);
-=======
-    return (get_post_type($id) == ServicePostType::ID ? true : false);
->>>>>>> parent of 4600e1e... Fix typos and bad labelling
   }
 
   private function set_post_data($service) {

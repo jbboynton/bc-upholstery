@@ -1,6 +1,6 @@
 <?php
 
-namespace BC\Canvas;
+namespace BC\Upholstery;
 
 class Helpers {
   public static function dasherize($string) {

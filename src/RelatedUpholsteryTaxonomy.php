@@ -25,20 +25,20 @@ class RelatedUpholsteryTaxonomy {
   }
 
   public function cast_taxonomy_terms() {
-    $terms = $_POST['tax_input'][CanvasServices::TAXONOMY_ID] ?? '';
+    $terms = $_POST['tax_input'][Services::TAXONOMY_ID] ?? '';
 
     if ($terms) {
-      $_POST['tax_input'][CanvasServices::TAXONOMY_ID] =
+      $_POST['tax_input'][Services::TAXONOMY_ID] =
         array_map('intval', $terms);
     }
   }
 
   private function names() {
     return [
-      'name' => CanvasServices::TAXONOMY_ID,
+      'name' => Services::TAXONOMY_ID,
       'singular' => self::SINGULAR_NAME,
       'plural' => self::PLURAL_NAME,
-      'slug' => CanvasServices::TAXONOMY_ID,
+      'slug' => Services::TAXONOMY_ID,
     ];
   }
 

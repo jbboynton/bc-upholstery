@@ -131,7 +131,7 @@
                     "new_lines": ""
                 },
                 {
-                    "key": "field_5e6d32b5a5519",
+                    "key": "field_5e6db77e180b8",
                     "label": "Supporting Image",
                     "name": "image",
                     "type": "image",
@@ -152,11 +152,7 @@
                     "max_width": "",
                     "max_height": "",
                     "max_size": "",
-                    "mime_types": "",
-                    "show_column": 0,
-                    "show_column_weight": 1000,
-                    "allow_quickedit": 0,
-                    "allow_bulkedit": 0
+                    "mime_types": ""
                 }
             ]
         },
@@ -283,5 +279,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1584215374
+    "modified": 1586666653
 }
