@@ -2,8 +2,8 @@
 
 /**
  * Plugin Name: BC Upholstery
- * Description: WordPress CPT for BC Custom Canvas' upholstery service.
- * Version: 0.1
+ * Description: WordPress CPT for BC Marine Canvas' upholstery service.
+ * Version: 0.1.1
  * Author: James Boynton
  */
 

@@ -1,6 +1,6 @@
 # BC Upholstery
 
-WordPress CPT for BC Custom Canvas' upholstery services.
+WordPress CPT for BC Marine Canvas' upholstery services.
 
 ## Environment Setup
 
