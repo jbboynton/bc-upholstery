@@ -58,7 +58,6 @@ class Services {
   }
 
   public function __construct() {
-    add_action('plugins_loaded', [$this, 'create_options_page']);
     add_action('init', [$this, 'create_post_type'], 0);
     add_action('init', [$this, 'create_taxonomy'], 0);
     add_action('init', [$this, 'create_bulk_action'], 0);
@@ -66,8 +65,16 @@ class Services {
     add_action('restrict_manage_posts', [$this, 'create_filters']);
     add_action('acf/save_post', [$this, 'set_fields_on_save'], 20);
     add_action('wp_trash_post', [$this, 'destroy_terms']);
+    add_action('wp_before_admin_bar_render', [$this, 'add_admin_bar_link']);
 
     add_filter('parse_query', [$this, 'filter_query']);
+    add_filter('display_post_states', [$this, 'post_states'], 10, 2);
+    add_filter(
+      'get_sample_permalink_html',
+      [$this, 'remove_permalink_edit_button'],
+      10,
+      2,
+    );
   }
 
   public function create_post_type() {
@@ -80,20 +87,6 @@ class Services {
 
   public function create_bulk_action() {
     new BulkAction();
-  }
-
-  public function create_options_page() {
-    $page_title = UpholsteryPostType::PLURAL_NAME . ' Page';
-    $menu_title = UpholsteryPostType::PLURAL_NAME . ' Page';
-    $parent_slug = 'edit.php?post_type=' . UpholsteryPostType::ID;
-
-    if (function_exists('acf_add_options_sub_page')) {
-      acf_add_options_sub_page([
-        'page_title' => $page_title,
-        'menu_title' => $menu_title,
-        'parent_slug' => $parent_slug,
-      ]);
-    }
   }
 
   public function create_terms() {
@@ -131,6 +124,25 @@ class Services {
     echo $markup;
   }
 
+  public function add_admin_bar_link() {
+    global $wp_admin_bar;
+
+    if (!$this->on_archive_page()) {
+      return;
+    }
+
+    $id = ($this->get_archive_page())->ID;
+
+    $wp_admin_bar->add_menu([
+      'id' => 'edit',
+      'title' => 'Edit Page',
+      'href' => admin_url("post.php?post={$id}&action=edit"),
+      'meta' => [
+        'class' => 'ab-item',
+      ],
+    ]);
+  }
+
   public function filter_query($query) {
     if (!(is_admin() && $query->is_main_query())) {
       return $query;
@@ -157,6 +169,25 @@ class Services {
     ];
 
     return $query;
+  }
+
+  public function post_states($post_states, $post) {
+    if (($this->get_archive_page())->ID === $post->ID) {
+      $post_states['bc_upholstery_archive_page'] =
+        UpholsteryPostType::PAGE_NAME;
+    }
+
+    return $post_states;
+  }
+
+  public function remove_permalink_edit_button($html, $id) {
+    $edit_button_pattern = '/<span id="edit-slug-buttons">.*<\/span>/';
+
+    if (($this->get_archive_page())->ID === $id) {
+      $html = preg_replace($edit_button_pattern, '', $html);
+    }
+
+    return $html;
   }
 
   public function set_fields_on_save($post_id) {
@@ -195,6 +226,27 @@ class Services {
 
   private function set_post_thumbnail($service) {
     set_post_thumbnail($service->id(), $service->card_image());
+  }
+
+  private function on_archive_page() {
+    $flag = false;
+    $queried_object = get_queried_object();
+
+    $is_post_type_object = ($queried_object instanceof \WP_Post_Type);
+
+    if ($is_post_type_object) {
+      $responds_to_name = (property_exists($queried_object, 'name'));
+      $on_archive_page =
+        ($queried_object->name === UpholsteryPostType::ID ? true : false);
+
+      $flag = ($responds_to_name && $on_archive_page);
+    }
+
+    return $flag;
+  }
+
+  private function get_archive_page() {
+    return get_page_by_path(UpholsteryPostType::SLUG);
   }
 
   private function create_related_service_term($service) {

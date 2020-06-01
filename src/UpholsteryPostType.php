@@ -6,6 +6,7 @@ use PostTypes\PostType;
 
 class UpholsteryPostType {
   public const ID = 'upholstery_service';
+  public const PAGE_NAME = 'Upholstery Page';
   public const PLURAL_NAME = 'Upholstery';
   public const SINGULAR_NAME = 'Upholstery Service';
   public const SLUG = 'upholstery';

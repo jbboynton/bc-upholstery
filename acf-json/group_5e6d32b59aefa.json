@@ -158,7 +158,7 @@
         },
         {
             "key": "field_5e6d32b5a9e22",
-            "label": "Featured Canvas Services",
+            "label": "Featured Upholstery Services",
             "name": "",
             "type": "accordion",
             "instructions": "",
@@ -245,7 +245,7 @@
                         "id": ""
                     },
                     "post_type": [
-                        "canvas_service"
+                        "upholstery_service"
                     ],
                     "taxonomy": "",
                     "filters": [
@@ -254,7 +254,9 @@
                     "elements": "",
                     "min": 3,
                     "max": 3,
-                    "return_format": "id"
+                    "return_format": "id",
+                    "show_column": 0,
+                    "show_column_weight": 1000
                 }
             ]
         }
@@ -262,9 +264,9 @@
     "location": [
         [
             {
-                "param": "options_page",
+                "param": "page",
                 "operator": "==",
-                "value": "acf-options-upholstery-page"
+                "value": "647"
             }
         ]
     ],
@@ -274,10 +276,12 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": [
+        "slug",
+        "author",
         "page_attributes",
         "featured_image"
     ],
     "active": 1,
     "description": "",
-    "modified": 1586666653
+    "modified": 1590863517
 }
